@@ -25,11 +25,11 @@ const createUserFormSchema = yup.object().shape({
 })  
 
 export default function CreateUser() {
-    const { register, handleSubmit, formState, errors } = useForm({
+    const { register, formState, handleSubmit } = useForm({
         resolver: yupResolver(createUserFormSchema)
     })
 
-    function handleCreateUser: SubmitHandler<CreateUserFormData> = async (value) => {
+    const handleCreateUser: SubmitHandler<CreateUserFormData> = async (value) => {
         await new Promise(resolve => setTimeout(resolve, 2000) )
     }
 
@@ -57,34 +57,34 @@ export default function CreateUser() {
                         <Input 
                             name="name" 
                             label="Nome completo" 
-                            error={errors.name}
-                            ref={register} 
+                            error={formState.errors.name}
+                            {...register("name")}
                         />
 
                         <Input 
                             name="email" 
                             type="email" 
                             label="E-mail" 
-                            error={errors.email}
-                            ref={register} 
+                            error={formState.errors.email}
+                            {...register("email")} 
                         />
                     </SimpleGrid>
 
                     <SimpleGrid minChildWidth="240px" spacing={["6", "8"]} w="100%">
                         <Input 
-                        name="password" 
-                        type="password" 
-                        label="Senha" 
-                        error={errors.password}
-                        ref={register} 
+                            name="password" 
+                            type="password" 
+                            label="Senha" 
+                            error={formState.errors.password}
+                            {...register("password")}
                         />
 
                         <Input 
-                        name="password_confirmation" 
-                        type="password" 
-                        label="Confirmação da senha" 
-                        error={errors.password_confirmation}
-                        ref={register} 
+                            name="password_confirmation" 
+                            type="password" 
+                            label="Confirmação da senha" 
+                            error={formState.errors.password_confirmation}
+                            {...register("password_confirmation")}
                         />
 
                     </SimpleGrid>
