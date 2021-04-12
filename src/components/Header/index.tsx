@@ -7,7 +7,7 @@ import { Logo } from './Logo';
 import { useSidebarDrawer } from "../../contexts/SidebarDrawerContext";
 import { RiMenuLine } from "react-icons/ri";
 
-export default function Header() {
+export function Header() {
     const { onOpen } = useSidebarDrawer();
 
     const isWideVersion = useBreakpointValue({
